@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jev · Snake II</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script>window.__errs=[];addEventListener('error',e=>__errs.push(e.message+' @ '+(e.filename||'')+':'+e.lineno+':'+e.colno));addEventListener('unhandledrejection',e=>__errs.push('REJECTION: '+e.reason));</script>
+<main>
+  <section class="phone">
+    <div class="brand"><span class="logo">JEv</span> SNAKE II</div>
+    <div class="screen"><canvas id="lcd" width="352" height="248"></canvas></div>
+    <div class="keys">
+      <button data-act="pause" id="btnPause">Pause</button>
+      <button data-act="restart" id="btnRestart">Restart</button>
+      <button data-act="jev" id="btnJev" disabled>Return to Jev</button>
+    </div>
+  </section>
+
+  <aside class="panel">
+    <h1>Autonomous Snake II</h1>
+    <p class="sub">Every route on the board is a single decision returned by <b>jev-1.13</b> — a System One decision model (noul / choice / score) served through OpenCode Zen. Each call offers a handful of complete candidate routes; Jev picks one and the snake plays it out step by step. A fresh route is requested the instant the apple is eaten.</p>
+
+    <div id="status" class="status"><span class="dot"></span><span class="label">booting</span></div>
+
+    <dl class="stats">
+      <div><dt>decisions</dt><dd id="stCalls">0</dd></div>
+      <div><dt>latency</dt><dd id="stLat">–</dd></div>
+      <div><dt>tokens</dt><dd id="stTok">0</dd></div>
+      <div><dt>plan queue</dt><dd id="stQueue">0</dd></div>
+      <div><dt>score</dt><dd id="stScore">0</dd></div>
+      <div><dt>level</dt><dd id="stLevel">1</dd></div>
+      <div><dt>deaths</dt><dd id="stDeaths">0</dd></div>
+      <div><dt>hi score</dt><dd id="stHi">0</dd></div>
+    </dl>
+
+    <h2>Jev route choice</h2>
+    <div id="bars"></div>
+
+    <h2>Decision log</h2>
+    <pre id="log">waiting for the first plan…</pre>
+
+    <p class="note">Keys: <b>arrows / WASD</b> take over · <b>space</b> pause · <b>enter</b> restart · <b>J</b> back to Jev. No local fallback on purpose — if the model can't answer, the snake waits for the model.</p>
+  </aside>
+</main>
+<script src="brain.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
